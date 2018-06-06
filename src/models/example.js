@@ -1,3 +1,4 @@
+import _ from 'lodash';
 
 export default {
 
@@ -19,21 +20,29 @@ export default {
     ],
   },
 
-  subscriptions: {
-    setup({ dispatch, history }) {  // eslint-disable-line
-    },
-  },
-
-  effects: {
-    *fetch({ payload }, { call, put }) {  // eslint-disable-line
-      yield put({ type: 'save' });
-    },
-  },
-
-  reducers: {
-    save(state, action) {
-      return { ...state, ...action.payload };
-    },
-  },
+  // subscriptions: {
+  //   setup({ dispatch, history }) {  // eslint-disable-line
+  //   },
+  // },
+  //
+  // effects: {
+  //   *fetch({ payload }, { call, put }) {  // eslint-disable-line
+  //     yield put({ type: 'save' });
+  //   },
+  // },
+  //
+  // reducers: {
+  //   save(state, action) {
+  //     return { ...state, ...action.payload };
+  //   },
+  // },
+  reducers : {
+    add(state,{item}){
+      return{
+        ...state,
+        list : _.concat(state.list,[item]),
+      }
+    }
+  }
 
 };

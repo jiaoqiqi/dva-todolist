@@ -10,6 +10,9 @@ class IndexPage extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.dispatch = props.dispatch;
+    this.state={
+      item : "",
+    }
   }
 
   render() {
@@ -20,8 +23,18 @@ class IndexPage extends React.Component {
           <small>( Dva + AntD )</small>
         </h1>
         <Content>
-          <Input placeholder="請輸入待辦事項"/>
-          <Button type="primary" icon="plus">新增</Button>
+          <Input placeholder="請輸入待辦事項"
+                 input={this.state.item}
+                 onChange={(e)=>{
+                   this.setState({item:e.target.value});
+                 }}
+          />
+          <Button type="primary" icon="plus"
+                  onClick={ ()=>{
+                    props.dispatch({type:"example/add",item:{name:this.state.item,status:false}})
+                    this.setState({item:""})
+                  }}
+          >新增</Button>
 
           <List
             className={styles.list}
