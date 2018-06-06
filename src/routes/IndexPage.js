@@ -9,24 +9,11 @@ class IndexPage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = {
-      list: [
-        {
-          name: '買醬油',
-          status: true
-        }, {
-          name: '背單字',
-          status: false
-        }, {
-          name: '打咚咚',
-          status: true
-        }
-      ]
-    }
+    this.dispatch = props.dispatch;
   }
 
   render() {
-
+    const props = this.props;
     return (
       <Layout className={styles.layout}>
         <h1>TodoList
@@ -39,7 +26,7 @@ class IndexPage extends React.Component {
           <List
             className={styles.list}
             bordered
-            dataSource={this.state.list}
+            dataSource={props.list}
             renderItem={(item, index) => (
               <List.Item>
                 <Checkbox
@@ -61,4 +48,11 @@ class IndexPage extends React.Component {
   }
 }
 
-export default connect()(IndexPage);
+function mapStateToProps(state) {
+  return {
+    list: state.example.list,
+    // example： example.js 的 namespace
+  };
+}
+
+export default connect(mapStateToProps)(IndexPage);

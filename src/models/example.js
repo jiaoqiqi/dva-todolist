@@ -3,7 +3,21 @@ export default {
 
   namespace: 'example',
 
-  state: {},
+  state: {
+    list: [{
+      name: '買醬油',
+      status: true,
+    },
+      {
+        name: '背單字',
+        status: false,
+      },
+      {
+        name: '打咚咚',
+        status: true,
+      },
+    ],
+  },
 
   subscriptions: {
     setup({ dispatch, history }) {  // eslint-disable-line
