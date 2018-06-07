@@ -10,8 +10,8 @@ class IndexPage extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.dispatch = props.dispatch;
-    this.state={
-      item : "",
+    this.state = {
+      item: "",
     }
   }
 
@@ -25,14 +25,14 @@ class IndexPage extends React.Component {
         <Content>
           <Input placeholder="請輸入待辦事項"
                  input={this.state.item}
-                 onChange={(e)=>{
-                   this.setState({item:e.target.value});
+                 onChange={(e) => {
+                   this.setState({item: e.target.value});
                  }}
           />
           <Button type="primary" icon="plus"
-                  onClick={ ()=>{
-                    props.dispatch({type:"example/add",item:{name:this.state.item,status:false}})
-                    this.setState({item:""})
+                  onClick={() => {
+                    props.dispatch({type: "example/add", item: {name: this.state.item, status: false}})
+                    this.setState({item: ""})
                   }}
           >新增</Button>
 
@@ -45,15 +45,22 @@ class IndexPage extends React.Component {
                 <Checkbox
                   className={(item.status ? styles.check : ' l')}
                   checked={item.status}
+                  onChange={(e) => {
+                    props.dispatch({type: 'example/check', index, value: e.target.checked})
+                  }}
                 >{item.name}</Checkbox>
                 <Button
                   className={styles.btndel}
                   type="danger"
                   size="small"
                   shape="circle"
-                  icon="cross" />
+                  icon="cross"
+                  onClick={() => {
+                    props.dispatch({type: 'example/delete', index})
+                  }}
+                />
               </List.Item>
-            )} />
+            )}/>
 
         </Content>
       </Layout>

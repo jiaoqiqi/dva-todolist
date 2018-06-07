@@ -42,6 +42,19 @@ export default {
         ...state,
         list : _.concat(state.list,[item]),
       }
+    },
+    check(state,{index,value}){
+      const newState = _.clone(state.list);
+      newState[index].status = value;
+      return{
+        ...state,
+        list : newState
+      }
+    },
+    delete(state,{index}){
+      return{
+        ...state,
+        list: _.filter(state.list, (item, i) => !_.isEqual(index, i)),      }
     }
   }
 
